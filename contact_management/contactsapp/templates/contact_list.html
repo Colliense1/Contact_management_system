@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css" />
+    <title>Contact List</title>
+</head>
+
+<body>
+    <h1>Contact List</h1>
+    <form method="get" action="">
+        <input type="text" name="q" placeholder="Search by name or email" value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+    <a href="{% url 'contact_create' %}">Add New Contact</a>
+    <ul>
+        {% for contact in contacts %}
+        <li>
+            <a href="{% url 'contact_detail' contact.pk %}">{{ contact.first_name }} {{ contact.last_name }}</a> - {{
+            contact.email }} - {{ contact.phone_number }}
+            <a href="{% url 'contact_update' contact.pk %}">Edit</a>
+            <a href="{% url 'contact_delete' contact.pk %}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
