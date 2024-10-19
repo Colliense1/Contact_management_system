@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<body class="delete-confirmation">
+    <div class="confirmation-container">
+        <h1 class="confirm_delete_heading">Confirm Delete</h1>
+        <hr class="cd_hr">
+        <p class="are_u_sure_delete">Are you sure you want to delete <strong>{{ contact.first_name }}
+                {{ contact.last_name }}</strong>?</p>
+        <div class="button-container">
+            <form method="post" style="display:inline;"> <!-- Keep the form inline -->
+                {% csrf_token %}
+                <button type="submit" class="confirm_delete_button confirm">Confirm</button>
+            </form>
+            <a href="{% url 'contact_list' %}" class="confirm_delete_button cancel">Cancel</a>
+        </div>
+    </div>
+</body>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<body class="details_body">
+    <div class="profile_container">
+        <div class="profile_details_wrap">
+            <div class="left-buttons">
+                <a class="button back" href="{% url 'contact_list' %}"><i class='bx bx-arrow-back'></i></a>
+                <h1 class="profile_header">{{ contact.first_name }}</h1>
+            </div>
+            <div class="right-buttons">
+                <a class="button edit" href="{% url 'contact_edit' contact.id %}"><i class='bx bxs-edit-alt'></i></a>
+                <a class="button delete" href="{% url 'contact_delete' contact.id %}"><i
+                        class='bx bxs-x-square'></i></a>
+            </div>
+        </div>
+        <div class="profile-card">
+            <p><strong>First Name:</strong> {{ contact.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ contact.last_name }}</p>
+            <p><strong>Phone Number:</strong> {{ contact.phone_number }}</p>
+            <p><strong>Email:</strong> {{ contact.email }}</p>
+            <p><strong>Address:</strong> {{ contact.address }}</p>
+        </div>
+    </div>
+</body>
+
+
+
+{% endblock %}

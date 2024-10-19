@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+<title>
+    {% block title %} {{ header_title }} {% endblock %}
+</title>
+
+
+{% block content %}
+<section class="home" id="home">
+    <div class="home_content">
+
+        <div class="wrapper_form">
+            <div class="container_form">
+                <div class="contact_form">
+                    {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <div class="emdetails_update_delete_div">
+                        <a class="emdetails_back_to_home" href="{% url 'contact_list' %}"><i class='bx bx-x'></i></a>
+
+                        <p class="heading">{{ title }}</p>
+                    </div>
+                    <hr>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-container">
+                            {{ form.as_p }}
+                            <button class="save_btn" type="submit">{{ button }}</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

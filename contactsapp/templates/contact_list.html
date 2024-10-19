@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block sidenav %}
+<div>
+    {% include 'partials/nav.html' %}
+</div>
+{% endblock %}
+
+{% block content %}
+<section>
+
+    <div class="main_content">
+        <div class="header">
+
+            <!-- Search Form -->
+            <form method="GET" action="{% url 'contact_list' %}">
+                <input type="text" name="query" placeholder="Search contacts" value="{{ query }}">
+                <button type="submit"><i class='bx bx-search-alt-2'></i></button>
+            </form>
+
+
+            <div class="create_new_contact">
+                <a href="{% url 'contact_add' %}"><i class='bx bx-user-plus'></i><span> Create new contact</span></a>
+
+            </div>
+
+
+            {% for letter, contacts in grouped_contacts.items %}
+            <div class="contact-group">
+                <div class="letter">{{ letter }}</div>
+
+
+                <div class="contacts">
+                    {% for contact in contacts %}
+                    <div class="contact">
+                        <span class="initial" style="background-color: {{ contact.color }}">
+                            {{ contact.first_name.0|title }}
+                        </span>
+                        <a href="{% url 'contact_detail' contact.id %}">
+                            {{ contact.first_name|title }}
+                            {{ contact.last_name }}</a>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
